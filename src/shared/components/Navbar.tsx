@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { mockStore } from '../lib/mockStore';
 import { LoginModal } from '../../features/auth/LoginModal';
-import { HeartHandshake, Shield, PlusCircle, LayoutDashboard, LogIn, LogOut, UserCheck } from 'lucide-react';
+import { HeartHandshake, PlusCircle, LayoutDashboard, LogIn, LogOut, UserCheck } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [currentUser, setCurrentUser] = useState(mockStore.getState().currentUser);
@@ -18,7 +18,6 @@ export const Navbar: React.FC = () => {
   const handleLogout = () => {
     if (confirm('¿Desea cerrar la sesión actual?')) {
       mockStore.addAuditLog('USER_LOGGED_OUT', 'auth', undefined, { role: currentUser.role });
-      // Reset user session to default viewer or basic role
       mockStore.setCurrentUserRole('operator');
       navigate('/');
     }
@@ -91,7 +90,15 @@ export const Navbar: React.FC = () => {
                 className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-sm transition-colors flex items-center gap-1.5"
               >
                 <LogIn className="w-3.5 h-3.5" />
-                <span>Ingreso Institucional</span>
+                <span>Ingresar</span>
+              </button>
+
+              <button
+                onClick={handleLogout}
+                title="Cerrar Sesión"
+                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
               </button>
 
               <Link
