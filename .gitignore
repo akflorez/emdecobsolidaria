@@ -1,0 +1,24 @@
+# Logs
+node_modules
+.ds_store
+dist
+dist-ssr
+*.local
+
+# Environment
+.env
+.env.production
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Capacitor
+android/app/build
+android/app/src/main/assets/public
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
